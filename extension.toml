@@ -1,0 +1,10 @@
+id = "moegi"
+name = "Moegi"
+version = "0.1.0"
+schema_version = 1
+authors = ["ldakhoa1308 <ldakhoa1308@gmail.com>"]
+description = "Port of the Moegi VSCode theme to Zed."
+repository = "https://github.com/ldakhoa1308/zed-moegi"
+
+[themes]
+"Moegi" = "themes/moegi.json"
