@@ -77,3 +77,30 @@ test('convertVariant assembles a full Zed theme entry', () => {
   assert.equal(result.style['editor.background'], '#fafafa');
   assert.equal(result.style.syntax.comment.color, '#888');
 });
+
+test('convertSyntax does not crash on rules without settings', () => {
+  const result = convertSyntax([
+    { name: 'Section header', scope: 'comment' },
+    { scope: 'comment', settings: { foreground: '#999' } },
+  ]);
+  assert.equal(result.comment.color, '#999');
+});
+
+test('convertSyntax skips bold-only rules and finds later rule with foreground', () => {
+  const result = convertSyntax([
+    { scope: 'keyword', settings: { fontStyle: 'bold' } },
+    { scope: 'keyword', settings: { foreground: '#abc' } },
+  ]);
+  assert.equal(result.keyword.color, '#abc');
+});
+
+test('convertVariant handles 3-digit hex by expanding before appending alpha', () => {
+  const upstream = {
+    type: 'dark',
+    colors: { 'editor.foreground': '#abc' },
+    tokenColors: [{ scope: 'keyword', settings: { foreground: '#fff' } }],
+  };
+  const result = convertVariant(upstream, 'X');
+  assert.equal(result.style.predictive, '#aabbcc66');
+  assert.equal(result.style.players[0].selection, '#ffffff33');
+});

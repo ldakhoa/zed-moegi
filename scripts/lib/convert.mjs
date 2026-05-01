@@ -104,33 +104,44 @@ const SYNTAX_MAP = [
   { zed: 'hint', scopes: ['entity.name.label'] },
 ];
 
-function findRule(tokenColors, scope) {
+function findRules(tokenColors, scope) {
+  const matches = [];
   for (const rule of tokenColors) {
     const ruleScopes = Array.isArray(rule.scope) ? rule.scope : (rule.scope ? [rule.scope] : []);
     if (ruleScopes.some(s => s.split(',').map(x => x.trim()).includes(scope))) {
-      return rule;
+      matches.push(rule);
     }
   }
-  return null;
+  return matches;
 }
 
 function styleFromRule(rule) {
   const style = {};
-  if (rule.settings.foreground) style.color = rule.settings.foreground;
-  if (rule.settings.fontStyle) {
-    const fs = rule.settings.fontStyle;
+  const fg = rule.settings?.foreground;
+  if (fg) style.color = fg;
+  const fs = rule.settings?.fontStyle;
+  if (fs) {
     if (fs.includes('italic')) style.font_style = 'italic';
     if (fs.includes('bold')) style.font_weight = 700;
   }
   return style;
 }
 
+function withAlpha(hex, alpha) {
+  if (typeof hex !== 'string' || !hex.startsWith('#')) return hex;
+  const h = hex.slice(1);
+  if (h.length === 3) return '#' + h.split('').map(c => c + c).join('') + alpha;
+  if (h.length === 6) return '#' + h + alpha;
+  return hex; // already has alpha or malformed; leave alone
+}
+
 export function convertSyntax(tokenColors) {
   const out = {};
   for (const { zed, scopes } of SYNTAX_MAP) {
     for (const scope of scopes) {
-      const rule = findRule(tokenColors, scope);
-      if (rule && rule.settings.foreground) {
+      const rules = findRules(tokenColors, scope);
+      const rule = rules.find(r => r.settings?.foreground);
+      if (rule) {
         out[zed] = styleFromRule(rule);
         break;
       }
@@ -157,7 +168,7 @@ export function convertVariant(vscodeTheme, name) {
   ].filter(Boolean);
   const players = Array.from({ length: 8 }, (_, i) => {
     const c = accents[i % Math.max(accents.length, 1)] || fg;
-    return { cursor: c, background: c, selection: c + '33' };
+    return { cursor: c, background: c, selection: withAlpha(c, '33') };
   });
 
   return {
@@ -166,7 +177,7 @@ export function convertVariant(vscodeTheme, name) {
     style: {
       ...ui,
       'editor.foreground': fg,
-      predictive: fg + '66',
+      predictive: withAlpha(fg, '66'),
       players,
       syntax,
     },
