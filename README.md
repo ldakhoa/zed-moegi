@@ -21,7 +21,7 @@ A port of the [Moegi VSCode theme](https://github.com/moegi-design/vscode-theme)
 ### As a development extension
 
 ```bash
-git clone https://github.com/ldakhoa1308/zed-moegi.git
+git clone https://github.com/ldakhoa/zed-moegi.git
 ```
 
 Then in Zed: Extensions panel → `Install Dev Extension` → select the cloned directory.
