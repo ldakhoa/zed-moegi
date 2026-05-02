@@ -36,6 +36,9 @@ const UI_MAP = {
   'foreground': 'text',
   'descriptionForeground': 'text.muted',
   'errorForeground': 'error',
+  'editorError.foreground': 'error',
+  'editorWarning.foreground': 'warning',
+  'editorHint.foreground': 'hint',
   'focusBorder': 'border.focused',
   'progressBar.background': 'info',
 
@@ -193,9 +196,17 @@ export function convertVariant(vscodeTheme, name) {
     syntax.function?.color ||
     fg;
   ui['info'] = accent;
-  if (ui['info.background'] == null) ui['info.background'] = withAlpha(accent, '1f');
-  if (ui['info.border'] == null) ui['info.border'] = withAlpha(accent, '4f');
   ui['text.accent'] = accent;
+
+  // Zed status badges (e.g. the "Restricted Mode" warning tag) read color/background/border
+  // from the same family. Without explicit values Zed falls back to defaults that don't
+  // match the variant. Fill in backgrounds and borders by alpha-tinting the foreground.
+  for (const status of ['info', 'warning', 'error', 'hint']) {
+    const fg = ui[status];
+    if (!fg) continue;
+    if (ui[`${status}.background`] == null) ui[`${status}.background`] = withAlpha(fg, '1f');
+    if (ui[`${status}.border`] == null) ui[`${status}.border`] = withAlpha(fg, '4f');
+  }
 
   // Players: cycle accent colors. Player 0 is local cursor.
   const accents = [
