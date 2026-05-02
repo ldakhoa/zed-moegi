@@ -6,8 +6,9 @@ const UI_MAP = {
   'editor.selectionBackground': 'editor.selection.background',
   'editor.findMatchBackground': 'search.match_background',
   'editorLineNumber.foreground': 'editor.line_number',
-  'editorLineNumber.activeForeground': 'editor.active_line_number',
+  'editorLineNumber.activeForeground': 'editor.line_number.active',
   'editorCursor.foreground': 'editor.cursor',
+  'editorGutter.background': 'editor.gutter.background',
   'editorIndentGuide.background': 'editor.indent_guide',
   'editorIndentGuide.activeBackground': 'editor.indent_guide_active',
   'editorWhitespace.foreground': 'editor.invisible',
@@ -18,13 +19,16 @@ const UI_MAP = {
   'panel.border': 'border',
   'sideBar.background': 'panel.background',
   'titleBar.activeBackground': 'title_bar.background',
+  'titleBar.inactiveBackground': 'title_bar.inactive_background',
   'statusBar.background': 'status_bar.background',
   'statusBar.foreground': 'text',
-  'tab.activeBackground': 'tab_bar.background',
+  'tab.activeBackground': 'tab.active_background',
   'tab.inactiveBackground': 'tab.inactive_background',
   'tab.activeForeground': 'tab.active_foreground',
   'tab.inactiveForeground': 'tab.inactive_foreground',
   'editorGroupHeader.tabsBackground': 'tab_bar.background',
+  'breadcrumb.background': 'toolbar.background',
+  'editorWidget.background': 'elevated_surface.background',
   'scrollbarSlider.background': 'scrollbar.thumb.background',
   'scrollbarSlider.hoverBackground': 'scrollbar.thumb.hover_background',
 
@@ -150,10 +154,31 @@ export function convertSyntax(tokenColors) {
   return out;
 }
 
+const SURFACE_FALLBACKS_FROM_EDITOR_BG = [
+  'editor.gutter.background',
+  'toolbar.background',
+  'title_bar.background',
+  'title_bar.inactive_background',
+  'surface.background',
+  'elevated_surface.background',
+  'tab_bar.background',
+  'tab.active_background',
+  'panel.background',
+  'status_bar.background',
+];
+
 export function convertVariant(vscodeTheme, name) {
   const ui = convertUI(vscodeTheme.colors || {});
   const syntax = convertSyntax(vscodeTheme.tokenColors || []);
   const fg = ui['editor.foreground'] || '#000000';
+  const editorBg = ui['editor.background'];
+
+  // Any surface VSCode didn't set falls back to editor.background so it doesn't render as white.
+  if (editorBg) {
+    for (const k of SURFACE_FALLBACKS_FROM_EDITOR_BG) {
+      if (ui[k] == null) ui[k] = editorBg;
+    }
+  }
 
   // Players: cycle accent colors. Player 0 is local cursor.
   const accents = [
