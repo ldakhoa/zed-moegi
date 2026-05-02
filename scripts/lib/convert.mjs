@@ -37,6 +37,7 @@ const UI_MAP = {
   'descriptionForeground': 'text.muted',
   'errorForeground': 'error',
   'focusBorder': 'border.focused',
+  'progressBar.background': 'info',
 
   // Git
   'gitDecoration.modifiedResourceForeground': 'version_control.modified',
@@ -179,6 +180,22 @@ export function convertVariant(vscodeTheme, name) {
       if (ui[k] == null) ui[k] = editorBg;
     }
   }
+
+  // Zed renders the "User" badge with `info.background` and toggle switches with
+  // `info` (40% opacity). Without these, Zed falls back to a saturated default blue
+  // that clashes with Moegi's palette. Derive an accent and fill in the info series
+  // plus text.accent so badges/toggles match the variant.
+  const accent =
+    ui['info'] ||
+    vscodeTheme.colors?.['activityBar.activeBorder'] ||
+    ui['border.focused'] ||
+    syntax.keyword?.color ||
+    syntax.function?.color ||
+    fg;
+  ui['info'] = accent;
+  if (ui['info.background'] == null) ui['info.background'] = withAlpha(accent, '1f');
+  if (ui['info.border'] == null) ui['info.border'] = withAlpha(accent, '4f');
+  ui['text.accent'] = accent;
 
   // Players: cycle accent colors. Player 0 is local cursor.
   const accents = [

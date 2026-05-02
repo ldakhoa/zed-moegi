@@ -30,6 +30,7 @@
         "scrollbar.thumb.background": "#0000001a",
         "scrollbar.thumb.hover_background": "#0000002f",
         "border.focused": "#26966a",
+        "info": "#e38181",
         "terminal.foreground": "#444444",
         "terminal.background": "#f9f9fb",
         "terminal.ansi.black": "#555555",
@@ -51,6 +52,9 @@
         "editor.gutter.background": "#ffffff",
         "toolbar.background": "#ffffff",
         "surface.background": "#ffffff",
+        "info.background": "#e381811f",
+        "info.border": "#e381814f",
+        "text.accent": "#e38181",
         "predictive": "#33333366",
         "players": [
           {
@@ -194,6 +198,7 @@
         "scrollbar.thumb.background": "#0000001a",
         "scrollbar.thumb.hover_background": "#0000002f",
         "border.focused": "#26966a",
+        "info": "#e38181",
         "terminal.foreground": "#444444",
         "terminal.background": "#f9f9fb",
         "terminal.ansi.black": "#555555",
@@ -215,6 +220,9 @@
         "editor.gutter.background": "#ffffff",
         "toolbar.background": "#ffffff",
         "surface.background": "#ffffff",
+        "info.background": "#e381811f",
+        "info.border": "#e381814f",
+        "text.accent": "#e38181",
         "predictive": "#33333366",
         "players": [
           {
@@ -349,6 +357,7 @@
         "scrollbar.thumb.background": "#180f071a",
         "scrollbar.thumb.hover_background": "#180f072f",
         "border.focused": "#a89f97",
+        "info": "#e38181",
         "terminal.foreground": "#584f47",
         "terminal.background": "#faf3ed",
         "terminal.ansi.black": "#685f57",
@@ -370,6 +379,9 @@
         "editor.gutter.background": "#fff9f3",
         "toolbar.background": "#fff9f3",
         "surface.background": "#fff9f3",
+        "info.background": "#e381811f",
+        "info.border": "#e381814f",
+        "text.accent": "#e38181",
         "predictive": "#483f3766",
         "players": [
           {
@@ -513,6 +525,7 @@
         "scrollbar.thumb.background": "#ffffff12",
         "scrollbar.thumb.hover_background": "#ffffff2f",
         "border.focused": "#ffffff3f",
+        "info": "#ff8787",
         "version_control.modified": "#e7d38f",
         "version_control.added": "#66b395",
         "version_control.deleted": "#ff8787",
@@ -539,6 +552,9 @@
         "editor.gutter.background": "#202020",
         "toolbar.background": "#202020",
         "surface.background": "#202020",
+        "info.background": "#ff87871f",
+        "info.border": "#ff87874f",
+        "text.accent": "#ff8787",
         "predictive": "#dddddd66",
         "players": [
           {
@@ -682,6 +698,7 @@
         "scrollbar.thumb.background": "#ffffff12",
         "scrollbar.thumb.hover_background": "#ffffff2f",
         "border.focused": "#ffffff3f",
+        "info": "#ff8787",
         "version_control.modified": "#e7d38f",
         "version_control.added": "#66b395",
         "version_control.deleted": "#ff8787",
@@ -708,6 +725,9 @@
         "editor.gutter.background": "#202020",
         "toolbar.background": "#202020",
         "surface.background": "#202020",
+        "info.background": "#ff87871f",
+        "info.border": "#ff87874f",
+        "text.accent": "#ff8787",
         "predictive": "#dddddd66",
         "players": [
           {
@@ -842,6 +862,7 @@
         "scrollbar.thumb.background": "#ffffff17",
         "scrollbar.thumb.hover_background": "#ffffff27",
         "border.focused": "#ffffff1f",
+        "info": "#ff8787",
         "version_control.modified": "#e7d38f",
         "version_control.added": "#66b395",
         "version_control.deleted": "#ff8787",
@@ -868,6 +889,9 @@
         "editor.gutter.background": "#0d0d0d",
         "toolbar.background": "#0d0d0d",
         "surface.background": "#0d0d0d",
+        "info.background": "#ff87871f",
+        "info.border": "#ff87874f",
+        "text.accent": "#ff8787",
         "predictive": "#dddddd66",
         "players": [
           {
@@ -1011,6 +1035,7 @@
         "scrollbar.thumb.background": "#ffffff17",
         "scrollbar.thumb.hover_background": "#ffffff27",
         "border.focused": "#ffffff1f",
+        "info": "#dddddd",
         "version_control.modified": "#e7d38f",
         "version_control.added": "#66b395",
         "version_control.deleted": "#ff8787",
@@ -1037,6 +1062,9 @@
         "editor.gutter.background": "#0d0d0d",
         "toolbar.background": "#0d0d0d",
         "surface.background": "#0d0d0d",
+        "info.background": "#dddddd1f",
+        "info.border": "#dddddd4f",
+        "text.accent": "#dddddd",
         "predictive": "#dddddd66",
         "players": [
           {
@@ -1180,6 +1208,7 @@
         "scrollbar.thumb.background": "#1307181a",
         "scrollbar.thumb.hover_background": "#1307182f",
         "border.focused": "#26966a",
+        "info": "#e38181",
         "terminal.foreground": "#534758",
         "terminal.background": "#efeaf5",
         "terminal.ansi.black": "#635768",
@@ -1201,6 +1230,9 @@
         "editor.gutter.background": "#f5f2f9",
         "toolbar.background": "#f5f2f9",
         "surface.background": "#f5f2f9",
+        "info.background": "#e381811f",
+        "info.border": "#e381814f",
+        "text.accent": "#e38181",
         "predictive": "#43374866",
         "players": [
           {
@@ -1344,6 +1376,7 @@
         "scrollbar.thumb.background": "#f8f2fd12",
         "scrollbar.thumb.hover_background": "#f8f2fd2f",
         "border.focused": "#f8f2fd3f",
+        "info": "#ff8787",
         "version_control.modified": "#e7d38f",
         "version_control.added": "#66b395",
         "version_control.deleted": "#ff8787",
@@ -1370,6 +1403,9 @@
         "editor.gutter.background": "#221e30",
         "toolbar.background": "#221e30",
         "surface.background": "#221e30",
+        "info.background": "#ff87871f",
+        "info.border": "#ff87874f",
+        "text.accent": "#ff8787",
         "predictive": "#ddd8e466",
         "players": [
           {
